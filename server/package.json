@@ -1,0 +1,15 @@
+{
+  "name": "spise_api",
+  "version": "1.0.0",
+  "description": "spise api for restraunts , web app and client app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "omkar dusane",
+  "license": "ISC",
+  "dependencies": {
+	"express": "^4.13.4",
+    "mongoose": "^4.4.2",
+  }
+}

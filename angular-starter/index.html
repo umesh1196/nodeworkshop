@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="coinApp" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>NG-Sample</title>
+
+    <!--Dependencies-->
+    <script src="js/angular.js"></script> <!-- angular 1.4.0-->
+    <script src="js/angular-route.js"></script> <!-- angular 1.4.0-->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+    <!--Custom Scripts and angular modules-->
+    <script src="pages/payment/payment.module.js"></script>
+    <script src="pages/coinApp.js"></script>
+
+</head>
+
+<body>
+<!-- putnavbar here-->
+<ul>
+    <li><a href="#/pay"> Payment page </a></li>
+    <li><a href="#/home"> Home page </a></li>
+    <li><a href="#/newpage"> new page </a></li>
+</ul>
+<div ng-view></div>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<div  ng-controller="paymentCtrl">
+
+    {{sample}}
+
+    <div align="center" class="col-xs-12 col-lg-4 col-md-4 ">
+
+        <form method="POST" action="/payment/citrus/return">
+
+            <fieldset hidden="true">
+
+                <input type="hidden" id="citrusFirstName" value="omkar" class="form-control" placeholder="Mobile Number">
+                <input type="hidden" id="citrusLastName" value="dusane" class="form-control" placeholder="Mobile Number">
+                <input type="hidden" id="citrusAmount" value="1.00" class="form-control" placeholder="Mobile Number">
+                <input type="hidden" id="citrusMerchantTxnId" value="12101477558388464" class="form-control" placeholder="Mobile Number">
+                <input type="hidden" id="citrusSignature" value="274b591ba7b05dbb935e22955e76fe598d97ae9a" class="form-control" placeholder="Mobile Number">
+                <input type="hidden" id="citrusReturnUrl" value="http://localhost:1337/payment/citrus/return" class="form-control" placeholder="Mobile Number">
+
+                <select id="citrusCardType">
+                    <option selected="selected" value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+
+                <select id="citrusScheme">
+                    <option selected="selected" value="visa">VISA</option>
+                    <option value="mastercard">MASTER</option>
+                </select>
+
+            </fieldset>
+
+            <fieldset id="step1">
+                <input id="citrusMobile" type="text" class="form-control" placeholder="Mobile Number">
+                <input id="citrusEmail" type="email" class="form-control" placeholder="Email">
+                <br>
+            </fieldset>
+
+            <button align="center" type="button" class="btn btn-info" id="cntnBtn1" style="display: inline-block;">Continue with Card</button>
+            <button align="center" type="button" class="btn btn-info" id="cntnBtn2" style="display: inline-block;">Continue with NetBanking</button>
+            <button align="center" type="button" class="btn btn-warning" id="backBtn" style="display: none;">back</button>
+            <br>
+
+
+            <fieldset id="step21" style="display: none;">
+
+                <input type="text" id="citrusNumber" value="" class="form-control" placeholder="Credit / Debit card number">
+                <input type="text" id="citrusCardHolder" value="" class="form-control" placeholder="Name on Card">
+                <div align="center">
+                    <input type="text" id="citrusExpiry" value="" class="col-6 form-control" placeholder="Expiry (MM/YY)">
+                    <input type="text" id="citrusCvv" value="" class="col-6 form-control" placeholder="CVV">
+                </div>
+                <br>
+                <button align="center" type="button" id="submitBtn" class="btn btn-primary">Confirm Payment</button>
+            </fieldset>
+            <br>
+
+            <fieldset id="step22" style="display: none;">
+
+                <select class="form-control" id="citrusAvailableOptions"></select>
+                <br>
+                <input type="button" class="btn btn-primary" value="Pay by netbanking" id="citrusNetbankingButton">
+            </fieldset>
+        </form>
+
+
+
+        <script>
+
+
+
+            $('#step21').hide();
+            $('#step22').hide();
+            $('#backBtn').hide();
+
+
+            $("#cntnBtn1").click(function () {
+                fadeAndShowStepTwo(1);
+            })
+
+            $("#cntnBtn2").click(function () {
+                fadeAndShowStepTwo(2);
+            })
+
+            $('#backBtn').click(goBack);
+
+            function goBack(){
+                $('#cntnBtn1').show();
+                $('#cntnBtn2').show();
+                $("#step22").fadeOut();
+                $("#step21").fadeOut();
+                $('#backBtn').hide();
+
+                // clear all the filled fields here later
+
+                $('#citrusMobile').prop("readonly", false);
+                $('#citrusEmail').prop("readonly", false);
+
+
+            }
+
+            function fadeAndShowStepTwo(act){
+                $('#cntnBtn1').hide();
+                $('#cntnBtn2').hide();
+                $('#backBtn').show();
+
+                if(act==2){ // net banking
+                    $("#step22").fadeIn();
+                    $("#step22").fadeIn("fast");
+                    $("#step22").fadeIn(500);
+                }
+                if(act==1){
+                    $("#step21").fadeIn();
+                    $("#step21").fadeIn("fast");
+                    $("#step21").fadeIn(500);
+                }
+
+                $('#citrusMobile').prop("readonly", true);
+                $('#citrusEmail').prop("readonly", true);
+
+
+
+            };
+
+            //Net Banking
+            $('#citrusNetbankingButton').on("click", function () { makePayment("netbanking") });
+            //Card Payment
+            $("#submitBtn").on("click", function () { makePayment("card") });
+
+
+            // valdations
+
+            jQuery(document).ready(function() {
+                jQuery.support.cors = true;
+
+                // setup card inputs;
+                jQuery('#citrusExpiry').payment('formatCardExpiry');
+                jQuery('#citrusCvv').payment('formatCardCVC');
+                jQuery('#citrusNumber').keyup(function() {
+                    var cardNum = jQuery('#citrusNumber').val().replace(/\s+/g, '');
+                    var type = jQuery.payment.cardType(cardNum);
+                    console.log(type);
+                    jQuery("#citrusNumber").css("background-image", "url(images/" + type + ".png)");
+                    if(type!='amex')
+                        jQuery("#citrusCvv").attr("maxlength","3");
+                    else
+                        jQuery("#citrusCvv").attr("maxlength","4");
+                    jQuery('#citrusNumber').payment('formatCardNumber');
+                    jQuery("#citrusScheme").val(type);
+                });
+            });
+
+        </script>
+        <style>
+
+        </style>
+    </div>
+
+</div>
