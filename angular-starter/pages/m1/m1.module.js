@@ -1,15 +1,15 @@
 /**
  * Created by Omkar Dusane on 27-Oct-16.
  */
-var paymentModule = angular.module('coinApp.payment',
+var m1 = angular.module('m1',
     [
         'ngRoute'
     ]).config(function ($routeProvider) {
 
     });
 
-paymentModule.controller('paymentCtrl',
+m1.controller('m1SampleCtrl',
     function ($scope) {
-        $scope.sample = "payment module ctrl";
+        $scope.sample = "M1  module ctrl loaded";
 
     });

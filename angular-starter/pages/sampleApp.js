@@ -2,17 +2,17 @@
  * Created by Omkar Dusane on 27-Oct-16.
  */
 
-var coinApp = angular.module('coinApp',
+var sampleApp = angular.module('sampleApp',
     [
         'ngRoute',
-        'coinApp.payment',
+        'm1',
     ]);
 
-coinApp.config(function ($routeProvider) {
+sampleApp.config(function ($routeProvider) {
     $routeProvider
-        .when("/pay", {
-            templateUrl: 'pages/payment/pay.html',
-            controller: 'sampleCtrl'
+        .when("/m1", {
+            templateUrl: 'pages/m1/view.html',
+            controller: 'm1SampleCtrl'
         })
         .when("/newpage", {
             templateUrl: 'pages/newpage.html',
@@ -30,9 +30,31 @@ coinApp.config(function ($routeProvider) {
 
 });
 
-coinApp.service('api',function ($http) {
+sampleApp.service('api',function ($http) {
     // sample http api POST request
-    var sampleHttpApiCall = function (jsonData,next){
+    this.sampleHttpApiCallGet = function (jsonData,next){
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/api/sample",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded",
+                "cache-control": "no-cache",
+            },
+            "params": (jsonData)
+        };
+        $http(settings).success(function (response) {
+            console.log(response);
+            if(response.ok){
+                next();
+            }else{
+                alert("Error");
+            }
+        });
+    };
+
+     this.sampleHttpApiCallPost = function (jsonData,next){
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -55,8 +77,8 @@ coinApp.service('api',function ($http) {
     };
 });
 
-coinApp.controller('sampleCtrl', sampleCtrl);
-coinApp.controller('nCtrl', nCtrl);
+sampleApp.controller('sampleCtrl', sampleCtrl);
+sampleApp.controller('nCtrl', nCtrl);
 
 
 function sampleCtrl($scope,api){
