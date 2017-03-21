@@ -9,7 +9,6 @@ function connectNow(next){
     db = mongoose.connection ;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function() {
-        // we're connected!
         databaseConnection = {};
         databaseConnection.users = db.collection('users');
         databaseConnection.area = db.collection('area');
@@ -22,7 +21,7 @@ function connectNow(next){
 
 module.exports = {
   connect: connectNow,
-  get : ()=>{
+  get :function(){
     return databaseConnection
   }
 } ;
