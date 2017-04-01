@@ -32,6 +32,8 @@ sampleApp.config(function ($routeProvider) {
 
 sampleApp.service('api',function ($http) {
     // sample http api POST request
+    let self = this;
+    self.token = '';
     this.signInHttpCall = function (jsonData,next){
         var settings = {
             "async": true,
@@ -47,9 +49,33 @@ sampleApp.service('api',function ($http) {
         $http(settings).success(function (response) {
             console.log(response);
             if(response.ok){
+                //self.token = response.token ;
+                localStorage.setItem('TOKEN',response.token);
                 next();
             }else{
                 alert("Error in signin "+response.message);
+            }
+        });
+    };
+
+    this.getAllRs = function (next){
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/r/get",
+            "method": "GET",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded",
+                "cache-control": "no-cache",
+                "token":localStorage.getItem('TOKEN')
+            }
+            };
+        $http(settings).success(function (response) {
+            console.log(response);
+            if(response.ok){
+                next(response.rs);
+            }else{
+                alert("Error in r get : "+response.message);
             }
         });
     };
@@ -106,15 +132,25 @@ sampleApp.controller('nCtrl', nCtrl);
 
 function sampleCtrl($scope,api){
     $scope.sample = "Sample Controller module Home";
+    $scope.user ={};
+    $scope.rs = [];
+
     $scope.signin = function(){
         let mockUser = {
             email:'omkar@gmail.com',
             password:'123'
         };
-        api.signInHttpCall(mockUser,function(){
+        api.signInHttpCall($scope.user,function(){
             console.log('Logged In')
             alert('Logged In successfully')
            // window.location = '';
+        })
+    };
+
+    $scope.getAllRests = function(){
+         api.getAllRs(function(rs){
+            console.log('got all : ',rs);
+            $scope.rs = rs;
         })
     };
 

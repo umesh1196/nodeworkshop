@@ -2,8 +2,21 @@
     <div class="container">
         {{sample}}
         <div class="col-xs-8 col-xs-offset-2 text-center">
+            <input type="text" ng-model="user.email"> <br />
+            <input type="text" ng-model="user.password">
+
             <input type="button" ng-click="signin()" value="SIGNIN">  </input> 
         </div>
+
+        <br>
+        <br>
+        <br>
+            <input type="button" ng-click="getAllRests()" value="Get rs">  </input> 
+        <br>
+        <br>
+        <ul>
+        <li ng-repeat="r in rs"> {{r.name}} </li>
+        </ul>
     </div>
 
 </div>
