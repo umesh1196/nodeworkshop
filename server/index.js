@@ -12,17 +12,17 @@ app.get('/signin',function(req,res){
     console.log(req.query);
     if(req.query.email && req.query.password){
       /*
-      dbconn.get().users.find({
-        email:req.query.email,
-        password:req.query.password        
-        }).toArray(function(error,docsArray){
-          console.log(docsArray)
-          if(docsArray.length ==1){
-              res.json({ok:true,message:'valid user! enjoy'})
-          }else{
-              res.json({ok:false,message:'in-valid user! try again'})
-          }
-        });
+        dbconn.get().users.find({
+          email:req.query.email,
+          password:req.query.password        
+          }).toArray(function(error,docsArray){
+            console.log(docsArray)
+            if(docsArray.length ==1){
+                res.json({ok:true,message:'valid user! enjoy'})
+            }else{
+                res.json({ok:false,message:'in-valid user! try again'})
+            }
+          });
       */
       dbconn.get().users.count({
         email:req.query.email,
