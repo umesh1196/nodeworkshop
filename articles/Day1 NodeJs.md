@@ -5,14 +5,14 @@
 
 NodeJs is server-side runtime for Javascript and it was a revolutionary advancement to the world of software engineering in 2011.
 
-[x] install node in your computer from nodejs.org
-[ ] read about node basics
-	- https://nodeschool.io/
-	- anything you can find in search results suits well
-[ ] watch this:
-	- https://www.youtube.com/watch?v=ztspvPYybIY
-[ ] watch this guy to know advanced JS concepts:
-	- https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q
+- [x] install node in your computer from nodejs.org
+- [ ] read about node basics
+	* https://nodeschool.io/
+	* anything you can find in search results suits well
+- [ ] watch this:
+	* https://www.youtube.com/watch?v=ztspvPYybIY
+- [ ] watch this guy to know advanced JS concepts:
+	* https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q
 
 Today: 
 

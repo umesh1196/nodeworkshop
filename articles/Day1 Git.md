@@ -5,12 +5,12 @@
 
 Today you must have your team with you. This tool named git will help you share your codebase between your teammates. 
 
-[x] install git in your computer from git-scm.com
-[ ] read about git basics
-	- Deep: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
-	- Cool: http://rogerdudler.github.io/git-guide/
-[ ] all that I have given below in a better way : 
-	- https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+- [x] install git in your computer from git-scm.com
+- [ ] read about git basics
+	* Deep: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
+	* Cool: http://rogerdudler.github.io/git-guide/
+- [ ] all that I have given below in a better way : 
+	* https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 
 so, as team lead (only one person in team should do this) go to a new folder in your computer and 
 - create a git repo.
