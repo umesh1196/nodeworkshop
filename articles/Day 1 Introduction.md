@@ -10,11 +10,12 @@ So I am giving you a problem statement and some tools to build solutions as web 
 Remember You will be the one solving the problem. I am just introducing you to the tools and giving you the problem statement. Please use your creativity and all the freedom on the internet to get help and make sure at the end you tell me "I know these tools and I know how to use them to solve real world problems"
 
 
-### Curricullum (The tools)
+### curriculum (The tools)
 
 - **Git**: Github, init, add, commit, push, pull, merge.
 - **JavaScript**: Data Structures, callbacks.
 - **NodeJs**: Express, get, post, Body-parser, Router.
+- **AngularJs**: controllers, services, ngRoute, ng-repeat, ng-model, $http.
 - **MongoDB**: mongod, mongo, insert, find, count, update, $set
 - **Authentication**: Token based Authentication using jwt.io
 - **Microsoft Azure**: Deployment in cloud, VMs, WebApps.
