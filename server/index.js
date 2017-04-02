@@ -72,6 +72,9 @@ app.get('/r/get',function(req,res){
        res.json({ok:false,message:'No token'})
   }
 })
+app.get('/hello',function(req,res){
+         res.json({ok:true,message:"HII budd")};
+                  })
 
 app.use('/', express.static('public'))
 //app.use('/ops', express.static('ops_site'))
